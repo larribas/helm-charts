@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  mlflow:
+  - apiVersion: v2
+    appVersion: 1.7.0
+    created: "2020-03-12T08:30:53.385315+01:00"
+    description: A Helm chart to productionalize MLFlow
+    digest: f163263b15d821ab9bb641533a105cc2cb599936244bc6e47182d54e7704776f
+    name: mlflow
+    type: application
+    urls:
+    - https://larribas.github.io/helm-charts/mlflow-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-03-12T08:30:53.384447+01:00"
