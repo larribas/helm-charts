@@ -11,3 +11,13 @@ All charts in this repo:
 - Are pinned to a specific version
 - Provide flexibility when choosing the extra Kubernetes artifacts you want to create (RBAC, Ingress, and so on)
 - Have worked for me in production at the last time of publication
+
+
+
+## Maintainer Cheat Sheet
+
+1. Add/modify a chart
+2. Bump up the `version` in `<project>/Chart.yaml`
+3. Run `helm package <project>` to create a `<project>-<version>.tgz` file
+4. Update the repository's index via `helm repo index .`
+
