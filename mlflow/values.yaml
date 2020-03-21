@@ -47,6 +47,9 @@ ingress:
   hosts:
     - host: chart-example.local
       paths: []
+      # - path: "/*"
+      #   serviceNameOverride: chart-example  (leave empty for the mlflow service name)
+      #   servicePortOverride: 80             (leave empty for the mlflow service port)
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
