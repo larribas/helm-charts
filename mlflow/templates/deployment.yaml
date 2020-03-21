@@ -31,10 +31,10 @@ spec:
             - --host=0.0.0.0
             - --port=80
           {{- if .Values.backendStoreUri }}
-            - --backend-store-uri={{ . }}
+            - --backend-store-uri={{ .Values.backendStoreUri }}
           {{- end }}
           {{- if .Values.defaultArtifactRoot }}
-            - --default-artifact-root={{ . }}
+            - --default-artifact-root={{ .Values.defaultArtifactRoot }}
           {{- end }}
           {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
