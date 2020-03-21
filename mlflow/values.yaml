@@ -8,7 +8,7 @@ extraArgs: {}
 replicaCount: 1
 
 image:
-  repository: larribas/mlflow
+  repository: docker.pkg.github.com/larribas/docker-production-mlflow/mlflow
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

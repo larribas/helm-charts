@@ -3,7 +3,17 @@ entries:
   mlflow:
   - apiVersion: v2
     appVersion: 1.7.0
-    created: "2020-03-21T13:51:33.652612942+01:00"
+    created: "2020-03-21T17:53:23.465762607+01:00"
+    description: A Helm chart to productionalize MLFlow
+    digest: 10121b63c275d6c5886077980c6a01ac442706f200cbae48883cd195c7e65e4d
+    name: mlflow
+    type: application
+    urls:
+    - mlflow-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.7.0
+    created: "2020-03-21T17:53:23.465458831+01:00"
     description: A Helm chart to productionalize MLFlow
     digest: 17e966d89dd5f3cb7eb15d2a864e156cf277d5847baf917b9facb1ceec584df9
     name: mlflow
@@ -13,7 +23,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.7.0
-    created: "2020-03-21T13:51:33.650502654+01:00"
+    created: "2020-03-21T17:53:23.465163428+01:00"
     description: A Helm chart to productionalize MLFlow
     digest: f78ac446a1023cc852a69a258397ee50c188a8d4736948fe4bfb63ee19da779d
     name: mlflow
@@ -23,7 +33,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.7.0
-    created: "2020-03-21T13:51:33.650152124+01:00"
+    created: "2020-03-21T17:53:23.464846652+01:00"
     description: A Helm chart to productionalize MLFlow
     digest: f163263b15d821ab9bb641533a105cc2cb599936244bc6e47182d54e7704776f
     name: mlflow
@@ -31,4 +41,4 @@ entries:
     urls:
     - mlflow-0.1.0.tgz
     version: 0.1.0
-generated: "2020-03-21T13:51:33.649674725+01:00"
+generated: "2020-03-21T17:53:23.464435471+01:00"
