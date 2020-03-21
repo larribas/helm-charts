@@ -3,12 +3,22 @@ entries:
   mlflow:
   - apiVersion: v2
     appVersion: 1.7.0
-    created: "2020-03-12T08:30:53.385315+01:00"
+    created: "2020-03-21T11:57:46.495315127+01:00"
+    description: A Helm chart to productionalize MLFlow
+    digest: f78ac446a1023cc852a69a258397ee50c188a8d4736948fe4bfb63ee19da779d
+    name: mlflow
+    type: application
+    urls:
+    - mlflow-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.7.0
+    created: "2020-03-21T11:57:46.494864005+01:00"
     description: A Helm chart to productionalize MLFlow
     digest: f163263b15d821ab9bb641533a105cc2cb599936244bc6e47182d54e7704776f
     name: mlflow
     type: application
     urls:
-    - https://larribas.github.io/helm-charts/mlflow-0.1.0.tgz
+    - mlflow-0.1.0.tgz
     version: 0.1.0
-generated: "2020-03-12T08:30:53.384447+01:00"
+generated: "2020-03-21T11:57:46.494261602+01:00"
