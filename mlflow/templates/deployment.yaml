@@ -33,7 +33,7 @@ spec:
           {{- if .Values.backendStore.filepath }}
             - --backend-store-uri={{ .Values.backendStore.filepath }}
           {{- else if .Values.backendStore.postgres }}
-            - --backend-store-uri=postgresql://{{ required "you must specify a username for the database" .Values.backendStore.postgres.username }}:$SECRET_PASSWORD@{{ required "you must specify a host for the database" .Values.backendStore.postgres.host }}:{{ required "you must specify a port for the database" .Values.backendStore.postgres.port }}/{{ required "you must specify a database name" .Values.backendStore.postgres.database }}
+            - --backend-store-uri=postgresql://{{ required "you must specify a username for the database" .Values.backendStore.postgres.username }}:$(SECRET_PASSWORD)@{{ required "you must specify a host for the database" .Values.backendStore.postgres.host }}:{{ required "you must specify a port for the database" .Values.backendStore.postgres.port }}/{{ required "you must specify a database name" .Values.backendStore.postgres.database }}
           {{- end }}
           {{- if .Values.defaultArtifactRoot }}
             - --default-artifact-root={{ .Values.defaultArtifactRoot }}
