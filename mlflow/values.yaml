@@ -15,8 +15,11 @@ backendStore: {}
   #   port:
   #   database:
 
-# Keep in mind a default artifact root is necessary when specifying a database backend store
+# defaultArtifactRoot points to a local or remote filepath (e.g. s3://my-bucket).
+# It is necessary when specifying a database backend store
 defaultArtifactRoot:
+
+# extraArgs to be applied to the `mlflow server` command
 extraArgs: {}
   # workers: 2
   # expose-prometheus: yes

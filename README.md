@@ -14,6 +14,11 @@ All charts in this repo:
 
 
 
+## Charts
+
+- [MLFlow](mlflow/README.md) - An open source platform for the machine learning lifecycle ([mlflow.org](https://mlflow.org/))
+
+
 ## Maintainer Cheat Sheet
 
 1. Add/modify a chart
