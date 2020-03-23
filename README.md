@@ -16,13 +16,14 @@ All charts in this repo:
 
 ## Charts
 
-- [MLFlow](mlflow/README.md) - An open source platform for the machine learning lifecycle ([mlflow.org](https://mlflow.org/))
+- [MLFlow](mlflow/README.md) (stable and production-ready) - An open source platform for the machine learning lifecycle ([mlflow.org](https://mlflow.org/))
 
 
 ## Maintainer Cheat Sheet
 
 1. Add/modify a chart
-2. Bump up the `version` in `<project>/Chart.yaml`
-3. Run `helm package <project>` to create a `<project>-<version>.tgz` file
-4. Update the repository's index via `helm repo index .`
+1. Update docs with [helm-docs](https://github.com/norwoodj/helm-docs)
+1. Bump up the `version` in `<project>/Chart.yaml`
+1. Run `helm package <project>` to create a `<project>-<version>.tgz` file
+1. Update the repository's index via `helm repo index .`
 

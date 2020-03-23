@@ -1,7 +1,12 @@
-# MLFlow
+mlflow
+======
 
 [MLFlow](https://mlflow.org/) is an open source platform specialized in tracking ML experiments, and packaging and deploying ML models.
 
+
+Current chart version is `1.0.0`
+
+---
 
 ## Install Chart
 
@@ -76,3 +81,35 @@ By default, this Chart creates a new ServiceAccount and runs the deployment unde
 By default, the ingress controller is disabled. You can, however, instruct the Chart to create an Ingress resource for you with the values you specify.
 
 
+## Chart Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| backendStore | object | `{"filepath":null,"postgres":null}` | Either a filepath, a database or the default value. At present, postgres is the only database engine supported by the official image. Should you want to connect to any other database, please refer to the README. |
+| backendStore.filepath | string | `nil` | A local or remote filesystem path (e.g. /mnt/persistent-disk) |
+| backendStore.postgres | string | `nil` | A map with the values for (username, password, host, port and database). |
+| defaultArtifactRoot | string | `nil` | A local or remote filepath (e.g. s3://my-bucket). It is mandatory when specifying a database backend store |
+| extraArgs | object | `{}` | A map of arguments and values to pass to the `mlflow server` command |
+| fullnameOverride | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"larribas/mlflow"` | The fully qualified name of the docker image to use |
+| image.tag | string | `nil` | The tag for the repository (e.g. 'latest') |
+| imagePullSecrets | list | `[]` |  |
+| ingress.annotations | object | `{}` |  |
+| ingress.enabled | bool | `false` |  |
+| ingress.hosts[0].host | string | `"chart-example.local"` |  |
+| ingress.hosts[0].paths | list | `[]` | A list of objects. Each object should contain a `path` key, and may contain a `serviceNameOverride` and a `servicePortOverride` key. If you do not specify any overrides, the Chart will use the ones for the service it creates automatically. We allow overrides to allow advanced behavior like SSL redirection on the AWS ALB Ingress Controller. |
+| ingress.tls | list | `[]` |  |
+| nameOverride | string | `""` |  |
+| nodeSelector | object | `{}` |  |
+| podSecurityContext | object | `{}` |  |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+| securityContext | object | `{}` |  |
+| service.port | int | `5000` |  |
+| service.type | string | `"NodePort"` |  |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `nil` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| tolerations | list | `[]` |  |
