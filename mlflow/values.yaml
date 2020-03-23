@@ -1,5 +1,21 @@
-# Options 
-backendStoreUri:
+# Arguments to `mlflow server`
+
+# backendStore can either be a database, a filepath, or the default value
+# At present, postgres is the only database engine supported by the 
+# official image. Should you want to connect to any other database, 
+# you need to install the right drivers in the docker image. 
+# PRs are welcome here: 
+#   https://github.com/larribas/docker-production-mlflow
+backendStore: {}
+  # filepath: /mnt/persistent-disk
+  # postgres:
+  #   username:
+  #   password: 
+  #   host:
+  #   port:
+  #   database:
+
+# Keep in mind a default artifact root is necessary when specifying a database backend store
 defaultArtifactRoot:
 extraArgs: {}
   # workers: 2

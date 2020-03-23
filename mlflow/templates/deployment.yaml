@@ -30,14 +30,24 @@ spec:
           args:
             - --host=0.0.0.0
             - --port=80
-          {{- if .Values.backendStoreUri }}
-            - --backend-store-uri={{ .Values.backendStoreUri }}
+          {{- if .Values.backendStore.filepath }}
+            - --backend-store-uri={{ .Values.backendStore.filepath }}
+          {{- else if .Values.backendStore.postgres }}
+            - --backend-store-uri=postgresql://{{ required "you must specify a username for the database" .Values.backendStore.postgres.username }}:$SECRET_PASSWORD@{{ required "you must specify a host for the database" .Values.backendStore.postgres.host }}:{{ required "you must specify a port for the database" .Values.backendStore.postgres.port }}/{{ required "you must specify a database name" .Values.backendStore.postgres.database }}
           {{- end }}
           {{- if .Values.defaultArtifactRoot }}
             - --default-artifact-root={{ .Values.defaultArtifactRoot }}
           {{- end }}
           {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
+          {{- end }}
+          {{- if .Values.backendStore.postgres }}
+          env:
+            - name: SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "mlflow.postgresSecretName" . }}
+                  key: password
           {{- end }}
           ports:
             - name: http
