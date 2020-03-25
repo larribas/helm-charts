@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "airflow.fullname" . }}-webserver
+  labels:
+    {{- include "airflow.global.labels" . | nindent 4 }}
+    {{- include "airflow.webserver.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "airflow.global.selectorLabels" . | nindent 6 }}
+      {{- include "airflow.webserver.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "airflow.global.selectorLabels" . | nindent 8 }}
+        {{- include "airflow.webserver.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "airflow.webserver.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      # initContainers:
+      #   - name: wait-for-airflow-migrations
+      #     image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
+      #     imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
+      #     args:
+      #       - airflow-migration-spinner
+      #       - --timeout=60
+      containers:
+        - name: webserver
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - bash
+            - -c
+            - 'airflow initdb && airflow webserver -p 80'
+            # - airflow
+            # - webserver
+            # - --port=80
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources:
+            {{- toYaml .Values.resources.webserver | nindent 12 }}
+          envFrom:
+            - secretRef:
+                name: {{ include "airflow.fullname" . }}
+            - configMapRef:
+                name: {{ include "airflow.fullname" . }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

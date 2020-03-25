@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "airflow.fullname" . }}
+  labels:
+    {{- include "airflow.global.labels" . | nindent 4 }}
+data:
+  AIRFLOW__CORE__EXECUTOR: KubernetesExecutor
+  AIRFLOW__KUBERNETES__NAMESPACE: {{ .Release.Namespace }}
+  AIRFLOW__KUBERNETES__WORKER_CONTAINER_REPOSITORY: {{ .Values.images.airflow.repository }}
+  AIRFLOW__KUBERNETES__WORKER_CONTAINER_TAG: {{ .Values.images.airflow.tag }}
+  AIRFLOW__KUBERNETES__WORKER_CONTAINER_PULL_POLICY: {{ .Values.images.airflow.pullPolicy }}
+  AIRFLOW__KUBERNETES__ENV_FROM_CONFIGMAP_REF: {{ include "airflow.fullname" . }}
+  AIRFLOW__KUBERNETES__ENV_FROM_SECRET_REF: {{ include "airflow.fullname" . }}
+  AIRFLOW__KUBERNETES__WORKER_SERVICE_ACCOUNT_NAME: {{ include "airflow.worker.serviceAccountName" . }}
+
+  {{- range $k, $v := .Values.config }}
+  {{ $k }}: {{ $v | quote }}
+  {{- end }}
