@@ -36,14 +36,11 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
           args:
-            - bash
-            - -c
-            - 'airflow initdb && airflow webserver -p 80'
-            # - airflow
-            # - webserver
-            # - --port=80
+            - airflow
+            - webserver
+            - --port=80
           ports:
             - name: http
               containerPort: 80

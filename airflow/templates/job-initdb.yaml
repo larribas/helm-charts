@@ -1,0 +1,33 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: {{ include "airflow.fullname" . }}-initdb
+  labels:
+    {{- include "airflow.global.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "0"
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: airflow
+          image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
+          imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
+          args:
+            - airflow
+            - initdb
+          envFrom:
+            - secretRef:
+                name: {{ include "airflow.fullname" . }}
+            - configMapRef:
+                name: {{ include "airflow.fullname" . }}
+      restartPolicy: Never

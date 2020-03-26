@@ -44,13 +44,10 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
           args:
-            - bash
-            - -c
-            - 'airflow initdb && airflow scheduler'
-            # - airflow
-            # - scheduler
+            - airflow
+            - scheduler
           resources:
             {{- toYaml .Values.resources.scheduler | nindent 12 }}
           envFrom:
