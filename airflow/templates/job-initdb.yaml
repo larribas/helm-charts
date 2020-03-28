@@ -1,13 +1,10 @@
+{{- if .Values.initializeDatabase }}
 kind: Job
 apiVersion: batch/v1
 metadata:
   name: {{ include "airflow.fullname" . }}-initdb
   labels:
     {{- include "airflow.global.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": "pre-install"
-    "helm.sh/hook-delete-policy": "before-hook-creation"
-    "helm.sh/hook-weight": "0"
 spec:
   backoffLimit: 4
   template:
@@ -31,3 +28,4 @@ spec:
             - configMapRef:
                 name: {{ include "airflow.fullname" . }}
       restartPolicy: Never
+{{- end }}

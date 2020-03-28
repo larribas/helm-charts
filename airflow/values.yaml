@@ -1,18 +1,18 @@
-# Default values for airflow.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-#
-# Airflow home directory
-# Used for mount paths
+# initializeDatabase -- When set to true, helm will create a one-time job to initialize the database
+initializeDatabase: false
+
+# airflowHome -- Used for mount paths
 airflowHome: "/usr/local/airflow"
 
+# config -- Map of environment variables to inject via envFrom/configMapRef
 config:
-  AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+  AIRFLOW__CORE__LOAD_EXAMPLES: "true"
   AIRFLOW__CORE__COLORED_CONSOLE_LOG: "false"
   AIRFLOW__CORE__ENABLE_XCOM_PICKLING: "false"
-  AIRFLOW__CORE__STORE_SERIALIZED_DAGS: "true"
   AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: "true"
 
+
+# secrets -- Map of environment variables to inject via envFrom/secretRef
 secrets: {}
 
 replicaCount: 1
@@ -22,13 +22,17 @@ images:
     repository: astronomerinc/ap-airflow
     tag: 1.10.7-alpine3.10
     pullPolicy: IfNotPresent
+  gitSync:
+    repository: k8s.gcr.io/git-sync
+    tag: v3.1.5
+    pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # serviceAccount.create -- Specifies whether a service account should be created
   create: true
 
   webserver:
@@ -75,6 +79,14 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+gitSync:
+  enabled: false
+  root: "/dags"
+  dest: "sync"
+  ssh:
+    privateKey:
+    knownHosts:
 
 
 resources:

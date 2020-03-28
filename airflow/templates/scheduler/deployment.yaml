@@ -32,13 +32,11 @@ spec:
       restartPolicy: Always
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      # initContainers:
-      #   - name: run-airflow-migrations
-      #     image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
-      #     imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
-      #     args:
-      #       - airflow
-      #       - upgradedb
+      {{- if .Values.gitSync.enabled }}
+      {{ include "airflow.gitSync.volumes" . | nindent 6 }}
+      initContainers:
+        {{ include "airflow.gitSync.initContainer" . | nindent 8 }}
+      {{- end }}
       containers:
         - name: scheduler
           securityContext:
@@ -55,6 +53,12 @@ spec:
                 name: {{ include "airflow.fullname" . }}
             - configMapRef:
                 name: {{ include "airflow.fullname" . }}
+        {{- if .Values.gitSync.enabled }}
+          volumeMounts:
+            - name: git-dags
+              mountPath: {{ include "airflow.dagsFolder" . }}
+        {{ include "airflow.gitSync.container" . | nindent 8 }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

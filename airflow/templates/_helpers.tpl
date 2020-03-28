@@ -76,35 +76,31 @@ Create the name of the service account to use
 */}}
 {{- define "airflow.webserver.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create -}}
-    {{ default (include "airflow.fullname" .) .Values.serviceAccount.webserver.name }}
+    {{ printf "%s-webserver" (default (include "airflow.fullname" .) .Values.serviceAccount.webserver.name) }}
 {{- else -}}
-    {{ default "default" .Values.serviceAccount.webserver.name }}
+    {{ printf "%s-webserver" (default "default" .Values.serviceAccount.webserver.name) }}
 {{- end -}}
 {{- end -}}
 {{- define "airflow.scheduler.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create -}}
-    {{ default (include "airflow.fullname" .) .Values.serviceAccount.scheduler.name }}
+    {{ printf "%s-scheduler" (default (include "airflow.fullname" .) .Values.serviceAccount.scheduler.name) }}
 {{- else -}}
-    {{ default "default" .Values.serviceAccount.scheduler.name }}
+    {{ printf "%s-scheduler" (default "default" .Values.serviceAccount.scheduler.name) }}
 {{- end -}}
 {{- end -}}
 {{- define "airflow.worker.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create -}}
-    {{ default (include "airflow.fullname" .) .Values.serviceAccount.worker.name }}
+    {{ printf "%s-worker" (default (include "airflow.fullname" .) .Values.serviceAccount.worker.name) }}
 {{- else -}}
-    {{ default "default" .Values.serviceAccount.worker.name }}
+    {{ printf "%s-worker" (default "default" .Values.serviceAccount.worker.name) }}
 {{- end -}}
 {{- end -}}
 
 
-{{ define "airflow_config_path" -}}
-{{ (printf "%s/airflow.cfg" .Values.airflowHome) | quote }}
-{{- end }}
-
-{{ define "airflow_webserver_config_path" -}}
-{{ (printf "%s/webserver_config.py" .Values.airflowHome) | quote }}
-{{- end }}
-
-{{ define "airflow_local_setting_path" -}}
-{{ (printf "%s/config/airflow_local_settings.py" .Values.airflowHome) | quote }}
-{{- end }}
+{{- define "airflow.dagsFolder" -}}
+{{- if .Values.config.AIRFLOW__CORE__DAGS_FOLDER -}}
+    {{ .Values.config.AIRFLOW__CORE__DAGS_FOLDER }}
+{{- else -}}
+    {{ printf "%s/dags" .Values.airflowHome }}
+{{- end -}}
+{{- end -}}
