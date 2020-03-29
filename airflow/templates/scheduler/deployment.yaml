@@ -23,6 +23,9 @@ spec:
       labels:
         {{- include "airflow.global.selectorLabels" . | nindent 8 }}
         {{- include "airflow.scheduler.selectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
