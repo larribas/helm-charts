@@ -17,6 +17,7 @@ All charts in this repo:
 ## Charts
 
 - [MLFlow](mlflow/README.md) (stable and production-ready) - An open source platform for the machine learning lifecycle ([mlflow.org](https://mlflow.org/))
+- [Airflow](airflow/README.md) (stable and production-ready) - A platform to programmatically author, schedule and monitor workflows ([apache.airflow.org](https://airflow.apache.org/))
 
 
 ## Maintainer Cheat Sheet

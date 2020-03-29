@@ -4,7 +4,7 @@ mlflow
 [MLFlow](https://mlflow.org/) is an open source platform specialized in tracking ML experiments, and packaging and deploying ML models.
 
 
-Current chart version is `1.0.0`
+Current chart version is `1.0.1`
 
 ---
 
@@ -13,7 +13,7 @@ Current chart version is `1.0.0`
 To install the MLFlow chart in your Kubernetes cluster, add the `larribas` repository (see main [README](../README.md)), and then run:
 
 ```bash
-helm install --namespace mlflow --name mlflow larribas/airflow
+helm install --namespace mlflow --name mlflow larribas/mlflow
 ```
 
 
