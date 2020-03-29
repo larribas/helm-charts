@@ -18,10 +18,12 @@ secrets: {}
 replicaCount: 1
 
 images:
+  # images.airflow -- The docker image to use for Airflow's webserver, scheduler and kubernetes workers
   airflow:
     repository: astronomerinc/ap-airflow
     tag: 1.10.7-alpine3.10
     pullPolicy: IfNotPresent
+  # images.gitSync -- The docker image to use to synchronize DAGs through Git
   gitSync:
     repository: k8s.gcr.io/git-sync
     tag: v3.1.5
@@ -81,6 +83,7 @@ ingress:
   #      - chart-example.local
 
 gitSync:
+  # gitSync.enabled -- Whether or not to use a Git repository as the source of truth for the DAGs available to Airflow. When enabled, you need to specify some of the environment variables listed [here](https://github.com/kubernetes/git-sync#parameters) inside of the config value defined above
   enabled: false
   root: "/dags"
   dest: "sync"
