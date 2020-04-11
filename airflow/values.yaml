@@ -20,8 +20,8 @@ replicaCount: 1
 images:
   # images.airflow -- The docker image to use for Airflow's webserver, scheduler and kubernetes workers
   airflow:
-    repository: astronomerinc/ap-airflow
-    tag: 1.10.7-alpine3.10
+    repository: apache/airflow
+    tag: 1.10.10
     pullPolicy: IfNotPresent
   # images.gitSync -- The docker image to use to synchronize DAGs through Git
   gitSync:

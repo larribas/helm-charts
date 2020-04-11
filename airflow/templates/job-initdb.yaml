@@ -20,7 +20,6 @@ spec:
           image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
           imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
           args:
-            - airflow
             - initdb
           envFrom:
             - secretRef:

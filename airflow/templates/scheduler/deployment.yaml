@@ -47,7 +47,6 @@ spec:
           image: "{{ .Values.images.airflow.repository }}:{{ .Values.images.airflow.tag }}"
           imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
           args:
-            - airflow
             - scheduler
           resources:
             {{- toYaml .Values.resources.scheduler | nindent 12 }}

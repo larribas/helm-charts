@@ -55,7 +55,7 @@ By default, the ingress controller is disabled. You can, however, instruct the C
 | gitSync.ssh.knownHosts | string | `nil` |  |
 | gitSync.ssh.privateKey | string | `nil` |  |
 | imagePullSecrets | list | `[]` |  |
-| images.airflow | object | `{"pullPolicy":"IfNotPresent","repository":"astronomerinc/ap-airflow","tag":"1.10.7-alpine3.10"}` | The docker image to use for Airflow's webserver, scheduler and kubernetes workers |
+| images.airflow | object | `{"pullPolicy":"IfNotPresent","repository":"apache/airflow","tag":"1.10.10"}` | The docker image to use for Airflow's webserver, scheduler and kubernetes workers |
 | images.gitSync | object | `{"pullPolicy":"IfNotPresent","repository":"k8s.gcr.io/git-sync","tag":"v3.1.5"}` | The docker image to use to synchronize DAGs through Git |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
