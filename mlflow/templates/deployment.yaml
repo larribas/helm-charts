@@ -35,8 +35,8 @@ spec:
           {{- else if .Values.backendStore.postgres }}
             - --backend-store-uri=postgresql://{{ required "you must specify a username for the database" .Values.backendStore.postgres.username }}:$(SECRET_PASSWORD)@{{ required "you must specify a host for the database" .Values.backendStore.postgres.host }}:{{ required "you must specify a port for the database" .Values.backendStore.postgres.port }}/{{ required "you must specify a database name" .Values.backendStore.postgres.database }}
           {{- end }}
-          {{- if .Values.defaultArtifactRoot }}
-            - --default-artifact-root={{ .Values.defaultArtifactRoot }}
+          {{- if .Values.defaultArtifactRoot.filepath }}
+            - --default-artifact-root={{ .Values.defaultArtifactRoot.filepath }}
           {{- end }}
           {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
@@ -63,6 +63,11 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.defaultArtifactRoot.mountpath }}            
+          volumeMounts:
+            - mountPath: {{ .Values.defaultArtifactRoot.mountpath }}
+              name: artifacts
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -74,4 +79,10 @@ spec:
     {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- if .Values.defaultArtifactRoot.pvcname }}
+      volumes:
+          - name: artifacts
+            persistentVolumeClaim:
+              claimName: {{ .Values.defaultArtifactRoot.pvcname }}
     {{- end }}
