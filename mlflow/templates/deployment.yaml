@@ -63,9 +63,9 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.defaultArtifactRoot.mountpath }}            
+          {{- if .Values.defaultArtifactRoot.volumemountpath }}            
           volumeMounts:
-            - mountPath: {{ .Values.defaultArtifactRoot.mountpath }}
+            - mountPath: {{ .Values.defaultArtifactRoot.volumemountpath }}
               name: artifacts
           {{- end }}
       {{- with .Values.nodeSelector }}
