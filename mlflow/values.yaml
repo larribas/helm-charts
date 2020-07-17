@@ -88,3 +88,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# set true to expose prometheus
+prometheus:
+  expose: false

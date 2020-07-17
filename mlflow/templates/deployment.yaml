@@ -38,6 +38,9 @@ spec:
           {{- if .Values.defaultArtifactRoot }}
             - --default-artifact-root={{ .Values.defaultArtifactRoot }}
           {{- end }}
+          {{- if .Values.prometheus.expose }}
+            - --expose-prometheus=yes
+          {{- end }}
           {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
           {{- end }}
