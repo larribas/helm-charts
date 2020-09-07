@@ -27,4 +27,3 @@ All charts in this repo:
 1. Bump up the `version` in `<project>/Chart.yaml`
 1. Run `helm package <project>` to create a `<project>-<version>.tgz` file
 1. Update the repository's index via `helm repo index .`
-
