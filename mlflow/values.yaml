@@ -11,8 +11,15 @@ backendStore:
   #   port:
   #   database:
 
-# defaultArtifactRoot -- A local or remote filepath (e.g. s3://my-bucket). It is mandatory when specifying a database backend store
+# defaultArtifactRoot 
 defaultArtifactRoot:
+  # A local or remote filepath (e.g. s3://my-bucket). It is mandatory when specifying a database backend store
+  filepath: 
+  
+  # if artifacts path is mounted with pvc volume, then provide volume mount path and pvc name
+  volumemountpath: 
+  pvcname: 
+
 
 # extraArgs -- A map of arguments and values to pass to the `mlflow server` command
 extraArgs: {}
