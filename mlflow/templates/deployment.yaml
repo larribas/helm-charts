@@ -55,8 +55,8 @@ spec:
                   name: {{ include "mlflow.postgresSecretName" . }}
                   key: password
           {{- end }}
-          - name: WORKAROUND_IN_CASE_ENV_IS_EMPTY
-            value: ""
+            - name: WORKAROUND_IN_CASE_ENV_IS_EMPTY
+              value: ""
           ports:
             - name: http
               containerPort: 80
