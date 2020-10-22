@@ -44,14 +44,19 @@ spec:
           {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
           {{- end }}
-          {{- if .Values.backendStore.postgres }}
           env:
+          {{- if .Values.env }}
+            {{ toYaml .Values.env | nindent 12 }}
+          {{- end }}
+          {{- if .Values.backendStore.postgres }}
             - name: SECRET_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ include "mlflow.postgresSecretName" . }}
                   key: password
           {{- end }}
+          - name: WORKAROUND_IN_CASE_ENV_IS_EMPTY
+            value: ""
           ports:
             - name: http
               containerPort: 80
