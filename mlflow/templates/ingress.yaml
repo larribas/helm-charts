@@ -37,7 +37,7 @@ spec:
               servicePort: {{ default $svcPort .servicePortOverride }}
         {{- end }}
     {{- if .host }}
-      host: {{ . | quote }}
+      host: {{ .host | quote }}
     {{- end }}
   {{- end }}
 {{- end }}
