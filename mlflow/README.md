@@ -106,6 +106,7 @@ By default, the ingress controller is disabled. You can, however, instruct the C
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
+| route.enabled | bool | `false` | Creates an OpenShift route object as an alternative to ingress. |
 | securityContext | object | `{}` |  |
 | service.port | int | `5000` |  |
 | service.type | string | `"NodePort"` |  |
