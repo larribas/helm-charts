@@ -1,0 +1,21 @@
+{{- if .Values.route.enabled -}}
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ include "mlflow.fullname" . }}
+  labels:
+    {{- include "mlflow.selectorLabels" . | nindent 4 }}
+spec:
+  to:
+    kind: Service
+    name: {{ include "mlflow.fullname" . }}
+    weight: 100
+  port:
+    targetPort: http
+  {{- if .Values.route.tls }}
+  tls:
+    termination: {{ .Values.route.tls.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.route.tls.insecureEdgeTerminationPolicy }}
+  {{- end }}
+  wildcardPolicy: None
+{{- end }}
