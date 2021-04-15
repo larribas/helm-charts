@@ -30,3 +30,4 @@ All charts in this repo:
 1. Run `helm package <project>` to create a `<project>-<version>.tgz` file
 1. Update the repository's index via `helm repo index .`
 
+TEST
