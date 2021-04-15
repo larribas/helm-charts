@@ -2,10 +2,11 @@ apiVersion: v2
 name: mlflow
 description: |
   [MLFlow](https://mlflow.org/) is an open source platform specialized in tracking ML experiments, and packaging and deploying ML models.
-home: "https://github.com/larribas/helm-charts/tree/master/mlflow"
+  Forked from https://github.com/larribas/helm-charts/tree/master/mlflow
+home: "https://github.com/dingobar/helm-charts/tree/master/mlflow"
 maintainers:
   - email: contact@larribas.me
-    name: Lorenzo Arribas
+    name: Martin Morset
 type: application
 version: 1.0.1
 appVersion: 1.15.2

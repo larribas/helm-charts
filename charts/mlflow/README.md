@@ -3,14 +3,15 @@
 ![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.15.2](https://img.shields.io/badge/AppVersion-1.15.2-informational?style=flat-square)
 
 [MLFlow](https://mlflow.org/) is an open source platform specialized in tracking ML experiments, and packaging and deploying ML models.
+Forked from https://github.com/larribas/helm-charts/tree/master/mlflow
 
-**Homepage:** <https://github.com/larribas/helm-charts/tree/master/mlflow>
+**Homepage:** <https://github.com/dingobar/helm-charts/tree/master/mlflow>
 
 ## Maintainers
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Lorenzo Arribas | contact@larribas.me |  |
+| Martin Morset | contact@larribas.me |  |
 
 ## Values
 
