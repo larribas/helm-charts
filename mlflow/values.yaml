@@ -11,6 +11,9 @@ backendStore:
   #   port:
   #   database:
 
+s3_aws_key_id:
+s3_aws_access_secret:
+
 # defaultArtifactRoot -- A local or remote filepath (e.g. s3://my-bucket). It is mandatory when specifying a database backend store
 defaultArtifactRoot:
 
