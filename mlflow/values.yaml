@@ -12,8 +12,8 @@ backendStore:
 #     database:
 
 env:
-#   s3_aws_key_id: XXX
-#   s3_aws_access_secret: XXX
+   AWS_ACCESS_KEY_ID: XXX
+   AWS_SECRET_ACCESS_KEY: XXX
 
 # defaultArtifactRoot -- A local or remote filepath (e.g. s3://my-bucket). It is mandatory when specifying a database backend store
 defaultArtifactRoot:
