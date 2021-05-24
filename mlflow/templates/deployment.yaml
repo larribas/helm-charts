@@ -46,13 +46,19 @@ spec:
           {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
           {{- end }}
-          {{- if .Values.backendStore.postgres }}
+          {{- if or .Values.backendStore.postgres .Values.env}}
           env:
             - name: SECRET_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ include "mlflow.postgresSecretName" . }}
                   key: password
+          {{- if .Values.env}}
+          {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value }}
+          {{- end }}
+          {{- end }}
           {{- end }}
           ports:
             - name: http
