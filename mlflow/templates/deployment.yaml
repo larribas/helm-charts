@@ -11,6 +11,8 @@ spec:
       {{- include "mlflow.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        {{- toYaml .Values.podAnnotations | nindent 8 }}
       labels:
         {{- include "mlflow.selectorLabels" . | nindent 8 }}
     spec:

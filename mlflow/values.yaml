@@ -93,4 +93,8 @@ affinity: {}
 prometheus:
   expose: false
 
+
 env: []
+
+podAnnotations: {}
+
